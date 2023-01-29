@@ -1,5 +1,4 @@
-const SWAPI_ROOT ='https://swapi.dev/api/';
-const SWAPI_PEOPLE = 'people';
+
 export const getApiResours = async (url) => {
     try {
         const res = await fetch(url);
@@ -15,11 +14,11 @@ export const getApiResours = async (url) => {
     }
 }
 
-(async () => {
+/* (async () => {
     const body = await getApiResours(SWAPI_ROOT + SWAPI_PEOPLE);
     console.log(body)
 })();
 
-// I can use promise as well
-//getApiResours(SWAPI_ROOT + SWAPI_PEOPLE)
-   // .then(body => console.log(body))
+ I can use promise as well
+getApiResours(SWAPI_ROOT + SWAPI_PEOPLE)
+    .then(body => console.log(body)) */
