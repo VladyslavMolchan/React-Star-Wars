@@ -3,7 +3,7 @@ import { getApiResours } from "../../utils/network";
 import { useState, useEffect} from "react";
 import { API_PEOPLE } from "../../constants/api";
 import { getPeopleId, getPeopleImage } from "../../services/getPeopleData";
-
+import PeopleList from "../../components/PeoplePage/PeopleList";
 const PeoplePage = () => {
     const [people, setPeople] = useState(null);
 
@@ -18,11 +18,11 @@ const PeoplePage = () => {
             console.log(img)
 
             return {
+                id,
                 name,
-                url
+                img
             }
             })
-            console.log(peopleList)
 
         setPeople(peopleList);
     }
@@ -33,13 +33,7 @@ const PeoplePage = () => {
 
     return (
         <>
-            {people && (
-            <ul>
-                {people.map(({ name, url }) =>
-                    <li key={name}>{name}</li>
-                )}
-            </ul>
-            )}
+            {people && <PeopleList people={people}/>}
         </>
     )
 }
