@@ -2,7 +2,7 @@ import {
     SWAPI_PARAM_PAGE,
     HTTP, HTTPS, SWAPI_ROOT, SWAPI_PEOPLE,
     URL_IMG_PERSON, GUIDE_IMG_EXTENSION
-} from "../constants/api";
+} from "@constants/api";
 
 //-----------------------------------------------
 // Получить ID страницы для персонажей
