@@ -1,5 +1,5 @@
 import styles from './PeopleList.module.css';
-
+import PropTypes from 'prop-types';
 const PeopleList = ({ people }) => {
     return (
         <ul className={styles.list__container}>
@@ -13,5 +13,9 @@ const PeopleList = ({ people }) => {
             )}
         </ul>
     )
+}
+
+PeopleList.propTypes = {
+    people: PropTypes.array
 }
 export default PeopleList;
