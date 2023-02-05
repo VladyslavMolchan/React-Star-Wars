@@ -2,8 +2,8 @@ import routesConfig from '@routes/routesConfig';
 import PeoplePage from "@containers/PeoplePage";
 import HomePage from "@containers/HomePage";
 import Header from "@components/Header";
+import NotFoundPage from "@containers/NotFoundPage";
 
-import { Routes } from "react-router";
 import cn from 'classnames';
 import styles from './App.module.css';
 import {useRoutes} from "react-router";
@@ -21,9 +21,16 @@ const App = () => {
             element: <PeoplePage/>
         },
         {
-            path: '/people/:id',
-            element: <PeoplePage/>
-        }
+            path: '/not-found',
+            exact: true,
+            element: <NotFoundPage/>
+        },
+        {
+            path: '*',
+            exact: false,
+            element: <NotFoundPage/>
+        },
+
     ]);
 
     return (
