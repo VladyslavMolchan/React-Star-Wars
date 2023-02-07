@@ -9,10 +9,6 @@ import { getPeopleId, getPeopleImage, getPeoplePageId } from "@services/getPeopl
 import { API_PEOPLE } from "@constants/api";
 import { useQueryParams } from "@hooks/useQueryParams";
 
-
-
-import styles from './PeoplePage.module.css';
-
 const PeoplePage = ( { setErrorApi }) => {
     const [people, setPeople] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
