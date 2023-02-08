@@ -3,6 +3,7 @@ import PeoplePage from "@containers/PeoplePage";
 import HomePage from "@containers/HomePage";
 import Header from "@components/Header";
 import NotFoundPage from "@containers/NotFoundPage";
+import PersonPage from "@containers/PersonPage";
 
 import cn from 'classnames';
 import styles from './App.module.css';
@@ -19,6 +20,11 @@ const App = () => {
         {
             path: '/people',
             element: <PeoplePage/>
+        },
+        {
+            path: '/people/:id',
+            exact: true,
+            element: <PersonPage/>
         },
         {
             path: '/not-found',
