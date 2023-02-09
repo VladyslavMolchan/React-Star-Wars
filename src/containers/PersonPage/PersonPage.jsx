@@ -1,25 +1,72 @@
 import styles from './PersonPage.module.css';
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { getApiResours } from "@utils/network";
-import { API_PERSON } from "@constants/api";
 
-const PersonPage = ({match}) => {
+import PersonInfo from '@components/PersonPage/PersonInfo'
+import PersonPhoto from '@components/PersonPage/PersonPhoto'
+
+import { API_PERSON } from "@constants/api";
+import { getPeopleImage } from '@services/getPeopleData'
+
+import { withErrorApi } from "@hoc-helpers/withErrorApi";
+import PropTypes from "prop-types";
+
+const PersonPage = ({ match, setErrorApi }) => {
     const { id } = useParams();
+    const [personInfo, setPersonInfo] = useState(null);
+    const [personName, setPersonName] = useState(null);
+    const [personPhoto, setPersonPhoto] = useState(null);
 
     useEffect(() => {
         (async () => {
             const res = await getApiResours(`${API_PERSON}/${id}/`);
-            console.log(`${API_PERSON}/${id}/`, res)
+
+            if(res) {
+                setPersonInfo([
+                    { title: 'Height', data: res.height },
+                    { title: 'Mass', data: res.mass},
+                    { title: 'Hair color', data: res.hair_color },
+                    { title: 'Skin color', data: res.skin_color },
+                    { title: 'Eye color', data: res.eye_color },
+                    { title: 'Birth Year', data: res.birth_year },
+                    { title: 'Gender', data: res.gender }
+                ]);
+
+                setPersonName(res.name);
+                setPersonPhoto(getPeopleImage(id))
+
+                //res.films
+
+                setErrorApi(false);
+            } else {
+                setErrorApi(true);
+            }
         })();
     }, []);
 
     return (
         <>
+            <div className={styles.wrapper}>
+                <span className={styles.person__name}>{personName}</span>
 
+                <div className={styles.container}>
+                    <PersonPhoto
+                        personPhoto={personPhoto}
+                        personName={personName}
+                    />
+
+                    {personInfo && <PersonInfo personInfo={personInfo}/> };
+                </div>
+            </div>
         </>
     )
 }
 
-export default PersonPage;
+PersonPage.propTypes = {
+    setErrorApi: PropTypes.func,
+    match: PropTypes.object,
+}
+
+export default withErrorApi(PersonPage);
