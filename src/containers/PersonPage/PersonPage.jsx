@@ -6,6 +6,8 @@ import { getApiResours } from "@utils/network";
 
 import PersonInfo from '@components/PersonPage/PersonInfo'
 import PersonPhoto from '@components/PersonPage/PersonPhoto'
+import PersonLinkBack from '@components/PersonPage/PersonLinkBack'
+
 
 import { API_PERSON } from "@constants/api";
 import { getPeopleImage } from '@services/getPeopleData'
@@ -48,6 +50,8 @@ const PersonPage = ({ match, setErrorApi }) => {
 
     return (
         <>
+            <PersonLinkBack />
+
             <div className={styles.wrapper}>
                 <span className={styles.person__name}>{personName}</span>
 
