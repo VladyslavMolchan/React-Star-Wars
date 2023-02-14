@@ -4,6 +4,8 @@ import HomePage from "@containers/HomePage";
 import Header from "@components/Header";
 import NotFoundPage from "@containers/NotFoundPage";
 import PersonPage from "@containers/PersonPage";
+import FavoritesPage from "@containers/FavoritesPage";
+
 
 import cn from 'classnames';
 import styles from './App.module.css';
@@ -25,6 +27,11 @@ const App = () => {
             path: '/people/:id',
             exact: true,
             element: <PersonPage/>
+        },
+        {
+            path: '/favorites',
+            exact: true,
+            element: <FavoritesPage/>
         },
         {
             path: '/not-found',

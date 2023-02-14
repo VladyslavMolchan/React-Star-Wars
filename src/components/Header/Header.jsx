@@ -10,6 +10,8 @@ const Header = () => {
                 <li className={styles.list__container}><NavLink  to="/" >Home</NavLink></li>
                 <li className={styles.list__container}> <NavLink  to="/people/?page=1" >People</NavLink></li>
                 <li className={styles.list__container}> <NavLink  to="/not-found" >Not found</NavLink></li>
+                <li className={styles.list__container}> <NavLink  to="/favorites" >favorites</NavLink></li>
+
             </ul>
         </div>
     )

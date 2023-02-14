@@ -13,6 +13,7 @@ module.exports = function override(config, env) {
         '@static': 'src/static',
         '@hooks': 'src/hooks',
         '@Ui': 'src/components/UI',
+        '@store': 'src/store',
     })(config);
 
     return config;

@@ -1,6 +1,7 @@
 import styles from './PersonPage.module.css';
 import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router";
+import {useSelector} from "react-redux";
 
 import { getApiResours } from "@utils/network";
 
@@ -20,16 +21,24 @@ import PropTypes from "prop-types";
 const PersonFilms = React.lazy(() => import('@components/PersonPage/PersonFilms'))
 
 const PersonPage = ({ match, setErrorApi }) => {
-    const { id } = useParams();
-
+    const [personId, setPersonId] = useState(null);
     const [personInfo, setPersonInfo] = useState(null);
     const [personName, setPersonName] = useState(null);
     const [personPhoto, setPersonPhoto] = useState(null);
     const [personFilms, setPersonFilms] = useState(null);
+    const [personFavorite, setPersonFavorite] = useState(false);
+
+    const storeData = useSelector(state => state.favoriteReducer);
+
+    const { id } = useParams();
 
     useEffect(() => {
         (async () => {
             const res = await getApiResours(`${API_PERSON}/${id}/`);
+
+            storeData[id] ? setPersonFavorite(true): setPersonFavorite(false);
+
+            setPersonId(id);
 
             if(res) {
                 setPersonInfo([
@@ -52,7 +61,7 @@ const PersonPage = ({ match, setErrorApi }) => {
                 setErrorApi(true);
             }
         })();
-    }, [id, setErrorApi]);
+    }, [id, setErrorApi, storeData]);
 
     return (
         <>
@@ -63,8 +72,11 @@ const PersonPage = ({ match, setErrorApi }) => {
 
                 <div className={styles.container}>
                     <PersonPhoto
+                        personId={personId}
                         personPhoto={personPhoto}
                         personName={personName}
+                        personFavorite={personFavorite}
+                        setPersonFavorite={setPersonFavorite}
                     />
 
                     {personInfo && <PersonInfo personInfo={personInfo} /> }
