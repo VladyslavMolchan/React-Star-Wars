@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 
 import { setPersonToFavorite, removePersonFromFavorite } from '@store/actions'
 
+import iconFavoriteHeart from './img/favorite.png'
+import iconFavoriteStar from './img/star.png'
+
 import styles from './PersonPhoto.module.css';
 
 
@@ -18,7 +21,7 @@ const PersonPhoto = ({
     const dispatch = useDispatch();
 
 
-    const dispatchFavoritepiople = () => {
+    const dispatchFavoritePiople = () => {
         if(personFavorite) {
             dispatch(removePersonFromFavorite(personId));
             setPersonFavorite(false);
@@ -37,13 +40,13 @@ const PersonPhoto = ({
         <>
             <div className={styles.container}>
                 <img className={styles.photo} src={personPhoto} alt={personName} />
+                <img
+                    src={personFavorite ? iconFavoriteHeart : iconFavoriteStar}
+                    onClick={dispatchFavoritePiople}
+                    className={styles.favorite}
+                    alt="add to favorite"
+                />
             </div>
-
-            <button onClick={dispatchFavoritepiople}>
-                {personFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-            </button>
-            Удалить из избранного
-            Добавить в избранное
         </>
     )
 }
