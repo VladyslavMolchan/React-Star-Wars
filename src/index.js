@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@styles/index.css';
-
+import ThemeProvaider from "@context/ThemeProvaider";
 import App from '@containers/App/App';
 import reportWebVitals from './reportWebVitals';
 
@@ -17,7 +17,9 @@ root.render(
   <React.StrictMode>
       <BrowserRouter>
           <Provider store={store}>
-              <App />
+              <ThemeProvaider>
+                  <App />
+              </ThemeProvaider>
           </Provider>
       </BrowserRouter>
   </React.StrictMode>
