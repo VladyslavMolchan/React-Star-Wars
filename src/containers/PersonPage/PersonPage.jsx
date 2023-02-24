@@ -34,7 +34,7 @@ const PersonPage = ({ match, setErrorApi }) => {
 
     useEffect(() => {
         (async () => {
-            const res = await getApiResours(`${API_PERSON}/${id}/`);
+            const res = await getApiResource(`${API_PERSON}/${id}/`);
 
             storeData[id] ? setPersonFavorite(true): setPersonFavorite(false);
 

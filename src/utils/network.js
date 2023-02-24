@@ -16,7 +16,7 @@ export const changeHTTP = url => {
  * @param {String} url - url for Fetch
  * @returns {Promise} - url result Fetch
  */
-export const getApiResours = async (url) => {
+export const getApiResource = async (url) => {
     try {
         const res = await fetch(url);
 

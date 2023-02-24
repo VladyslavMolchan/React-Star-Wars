@@ -19,7 +19,7 @@ const PeoplePage = ( { setErrorApi }) => {
     const queryPage = query.get('page');
 
     const getResource = async (url) => {
-        const res = await getApiResours(url);
+        const res = await getApiResource(url);
 
         if(res) {
             const peopleList = res.results.map(({ name, url }) => {

@@ -5,6 +5,7 @@ import Header from "@components/Header";
 import NotFoundPage from "@containers/NotFoundPage";
 import PersonPage from "@containers/PersonPage";
 import FavoritesPage from "@containers/FavoritesPage";
+import SearchPage from "@containers/SearchPage";
 
 
 import cn from 'classnames';
@@ -32,6 +33,11 @@ const App = () => {
             path: '/favorites',
             exact: true,
             element: <FavoritesPage/>
+        },
+        {
+            path: '/search',
+            exact: true,
+            element: <SearchPage/>
         },
         {
             path: '/not-found',
