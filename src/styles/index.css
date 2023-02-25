@@ -1,6 +1,7 @@
 
 :root {
   --color-white: #fff;
+  --color-light-grey: #dfe2df;
   --color-black: #000;
   --color-dark-gray: #10100e;
   --color-yellow: #ffff00;
@@ -81,5 +82,9 @@ img {
   text-shadow: 0 0 2px var(--color-black);
   color:var(--theme-default-header);
   transition: color var(--transition);
+}
+
+img {
+  display: block;
 }
 

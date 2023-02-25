@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import styles from './SearchPage.module.css';
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
+import { debounce } from "lodash";
+
+import InputSearch from "@components/InputSearch";
 
 import { getPeopleId, getPeopleImage } from "@services/getPeopleData";
 import { withErrorApi } from "@hoc-helpers/withErrorApi";
@@ -39,22 +42,27 @@ const SearchPage = ({ setErrorApi }) => {
         getResponse('');
     }, []);
 
-    const handleInputChange = (event) => {
-        const value = event.target.value;
-        setInputSearchValue(event.target.value);
+    const debouncedGetResponse = useCallback(
+        debounce(value => getResponse(value), 300),
+        []
+    );
 
-        getResponse(value);
+    const handleInputChange = value => {
+        setInputSearchValue(value);
+        debouncedGetResponse(value);
     }
 
     return (
         <>
             <h1 className='header__text' style={{color:"white"}}>Search</h1>
-            <input
-                type="text"
+
+            <InputSearch
                 value={inputSearchValue}
-                onChange={handleInputChange}
+                handleInputChange={handleInputChange}
                 placeholder='Search...'
+                classes={styles.input__search}
             />
+
             <SearchPageInfo people={people}/>
         </>
     )

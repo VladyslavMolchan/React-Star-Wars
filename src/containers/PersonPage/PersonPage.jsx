@@ -11,7 +11,7 @@ import PersonLinkBack from '@components/PersonPage/PersonLinkBack'
 
 import UiLoading from "@components/UI/UiLoading";
 
-
+import { getApiResource } from '@utils/network';
 import { API_PERSON } from "@constants/api";
 import { getPeopleImage } from '@services/getPeopleData'
 
@@ -34,12 +34,10 @@ const PersonPage = ({ match, setErrorApi }) => {
 
     useEffect(() => {
         (async () => {
-            const res = await getApiResource(`${API_PERSON}/${id}/`);
-
             storeData[id] ? setPersonFavorite(true): setPersonFavorite(false);
-
             setPersonId(id);
 
+            const res = await getApiResource(`${API_PERSON}/${id}/`);
             if(res) {
                 setPersonInfo([
                     { title: 'Height', data: res.height },
