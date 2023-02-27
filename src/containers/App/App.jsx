@@ -6,6 +6,7 @@ import NotFoundPage from "@containers/NotFoundPage";
 import PersonPage from "@containers/PersonPage";
 import FavoritesPage from "@containers/FavoritesPage";
 import SearchPage from "@containers/SearchPage";
+import ErrorMessage from "@components/ErrorMessage";
 
 
 import cn from 'classnames';
@@ -38,6 +39,11 @@ const App = () => {
             path: '/search',
             exact: true,
             element: <SearchPage/>
+        },
+        {
+            path: '/fail',
+            exact: true,
+            element: <ErrorMessage/>
         },
         {
             path: '/not-found',
