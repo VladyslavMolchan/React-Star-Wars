@@ -8,7 +8,6 @@ import FavoritesPage from "@containers/FavoritesPage";
 import SearchPage from "@containers/SearchPage";
 import ErrorMessage from "@components/ErrorMessage";
 
-
 import cn from 'classnames';
 import styles from './App.module.css';
 import {useRoutes} from "react-router";
@@ -53,7 +52,7 @@ const App = () => {
         {
             path: '*',
             exact: false,
-            element: <NotFoundPage/>
+            element:  <HomePage/>
         },
 
     ]);
